@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxjomegpmfebh"]
+
+[ext_resource type="PackedScene" uid="uid://kjen34bt1yum" path="res://addons/Platform/MovingPlatform.tscn" id="1_vdbbh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_af2kh"]
+resource_local_to_scene = true
+size = Vector2(72, 18)
+
+[node name="Test" type="Node2D"]
+
+[node name="MovingPlatform" parent="." instance=ExtResource("1_vdbbh")]
+position = Vector2(48, 23)
+
+[node name="CollisionShape2D" parent="MovingPlatform/Platform" index="1"]
+shape = SubResource("RectangleShape2D_af2kh")
+
+[node name="Marker2D" parent="MovingPlatform" index="1"]
+position = Vector2(211, 246)
+
+[editable path="MovingPlatform"]
