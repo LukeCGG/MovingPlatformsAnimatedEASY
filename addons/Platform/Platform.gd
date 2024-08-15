@@ -6,11 +6,11 @@ var animation = Animation.new()
 
 #Variables to set defaults
 @export var auto_active : bool = true
-@export var loop : bool = auto_active
+@export var loop : bool = true
 @export var activator : Node2D
 @export var speed : float = 0.5
 @onready var marky = $"../../MoveLocation"
-@export var marker : Marker2D = marky
+@export var marker : Marker2D
 @export var stopframe : float = 0.1
 @export var easing : float = 1
 @onready var capsule = $"../.."
@@ -25,6 +25,9 @@ var anim = get_animation_library("Platforms")
 
 #Once loaded, run!
 func _ready():
+	#Set Marker if null
+	if not marker:
+		marker = marky
 	#Seat easing with a more user frienly layout
 	if easing <= -1:
 		easing = 0
