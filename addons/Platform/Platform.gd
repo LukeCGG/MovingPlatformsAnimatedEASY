@@ -13,10 +13,9 @@ var animation = Animation.new()
 @export var marker : Marker2D
 @export var stopframe : float = 0.1
 @export var easing : float = 1
-@onready var capsule = $"../.."
 
 #Unique name for animation to not interfear with duplicates
-@onready var nameMe = str(capsule.name) + str(randi_range(0,100))
+@onready var nameMe = str($"../..".name) + str(randi_range(10,99))
 
 #Defaults for new Animation
 var node_path = NodePath('Platform:position')

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://8kf0xovialp1" path="res://addons/Platform/ActivatorButton.tscn" id="2_b016f"]
 [ext_resource type="PackedScene" uid="uid://d4mdrsd644m4f" path="res://Player.tscn" id="3_djgcs"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_af2kh"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajb6w"]
 resource_local_to_scene = true
 size = Vector2(72, 18)
 
@@ -13,22 +13,17 @@ size = Vector2(217, 20)
 
 [node name="Test" type="Node2D"]
 
-[node name="MovingPlatform" parent="." instance=ExtResource("1_vdbbh")]
-position = Vector2(48, 23)
-
-[node name="CollisionShape2D" parent="MovingPlatform/Platform" index="1"]
-shape = SubResource("RectangleShape2D_af2kh")
-
-[node name="AnimationPlayer" parent="MovingPlatform/Platform" index="2" node_paths=PackedStringArray("activator")]
-auto_active = false
-loop = false
-activator = NodePath("../../../ActivatorButton")
-
-[node name="MoveLocation" parent="MovingPlatform" index="1"]
-position = Vector2(307, 151)
-
 [node name="ActivatorButton" parent="." instance=ExtResource("2_b016f")]
 position = Vector2(503, 120)
+
+[node name="MovingPlatform" parent="." instance=ExtResource("1_vdbbh")]
+position = Vector2(66, 41)
+
+[node name="CollisionShape2D" parent="MovingPlatform/Platform" index="1"]
+shape = SubResource("RectangleShape2D_ajb6w")
+
+[node name="MoveLocation" parent="MovingPlatform" index="1"]
+position = Vector2(269, 143)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(506, 130)
