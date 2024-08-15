@@ -1,4 +1,5 @@
 Want to make a 2D moving platform in Godot? YouTube tutorials too hard and restricting? You've come to the right place, it's never been more simple!
+- Tested on Godot 4.2.2 (But probably works on older and newer versions) -
 
 1. Start by dropping the Platform scene into your Level
 2. Right click it in the scene tree
@@ -14,8 +15,8 @@ FOR JUST PLATFORMS
 
 FOR ACTIVATED PLATFORMS
 - Repeat steps above, and use the aditional options from the AnimationPlayer Inspector.
-- Auto Start will make the platform a "non activated" platform and it will play it's animation back and forth uninterupted.
-- Loop will make the platform loops it's animation, (NOTE: It is reccomended not to turn off loop and Autostart together, as it will not reactivate once activated once.)
-- Activator is used to set the activator for the platform, you can drag in a provided "ActivatorButton" scene into your level and link it via the platform. This will make it so that the button can control the platform animtion.
-  - If Loop is off, activiting the button will make the platform do a full loop of it's animation once per click (When not playing).
+- Auto Start will make the platform a "non activated" platform and it will play it's animation back and forth uninterrupted.
+- Loop will make the platform loops it's animation, (NOTE: It is recommended not to turn off loop and Autostart together, as it will not reactivate once activated once.)
+- Activator is used to set the activator for the platform, you can drag in a provided "ActivatorButton" scene into your level and link it via the platform. This will make it so that the button can control the platform animation.
+  - If Loop is off, activating the button will make the platform do a full loop of it's animation once per click (When not playing).
   - If Loop is on, pressing the button will move the platform while pressed and pause it's position when deactivated.
