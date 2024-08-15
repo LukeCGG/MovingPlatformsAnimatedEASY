@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://8kf0xovialp1"]
+
+[ext_resource type="Script" path="res://addons/Platform/ActivatorButton.gd" id="1_42njw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ph1m"]
+size = Vector2(36, 7)
+
+[node name="ActivatorButton" type="Node2D"]
+script = ExtResource("1_42njw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 20.0
+offset_right = 60.0
+offset_bottom = 8.0
+grow_horizontal = 2
+rotation = 3.14159
+
+[node name="Area2D" type="Area2D" parent="."]
+rotation = -3.14159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.98695e-07, 4.5)
+shape = SubResource("RectangleShape2D_2ph1m")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

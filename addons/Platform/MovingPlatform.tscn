@@ -13,7 +13,6 @@ position = Vector2(0, -9)
 
 [node name="Platform" type="AnimatableBody2D" parent="."]
 rotation = 1.5708
-collision_layer = 2
 
 [node name="ColorRect" type="ColorRect" parent="Platform"]
 anchors_preset = 8
@@ -40,6 +39,6 @@ libraries = {
 "Platforms": SubResource("AnimationLibrary_11ri7")
 }
 script = ExtResource("1_5k0de")
-marker = NodePath("../../Marker2D")
+marker = NodePath("../../MoveLocation")
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="MoveLocation" type="Marker2D" parent="."]
