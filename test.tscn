@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bxjomegpmfebh"]
 
-[ext_resource type="PackedScene" uid="uid://kjen34bt1yum" path="res://addons/Platform/MovingPlatform.tscn" id="1_vdbbh"]
-[ext_resource type="PackedScene" uid="uid://8kf0xovialp1" path="res://addons/Platform/ActivatorButton.tscn" id="2_b016f"]
+[ext_resource type="PackedScene" uid="uid://kjen34bt1yum" path="res://addons/platform/MovingPlatform.tscn" id="1_vdbbh"]
+[ext_resource type="PackedScene" uid="uid://8kf0xovialp1" path="res://addons/platform/ActivatorButton.tscn" id="2_b016f"]
 [ext_resource type="PackedScene" uid="uid://d4mdrsd644m4f" path="res://Player.tscn" id="3_djgcs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ajb6w"]
@@ -21,6 +21,10 @@ position = Vector2(66, 41)
 
 [node name="CollisionShape2D" parent="MovingPlatform/Platform" index="1"]
 shape = SubResource("RectangleShape2D_ajb6w")
+
+[node name="AnimationPlayer" parent="MovingPlatform/Platform" index="2" node_paths=PackedStringArray("activator")]
+type = "Hold2Open"
+activator = NodePath("../../../ActivatorButton")
 
 [node name="MoveLocation" parent="MovingPlatform" index="1"]
 position = Vector2(269, 143)

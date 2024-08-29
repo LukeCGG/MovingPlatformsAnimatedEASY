@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://8kf0xovialp1"]
 
-[ext_resource type="Script" path="res://addons/Platform/ActivatorButton.gd" id="1_42njw"]
+[ext_resource type="Script" path="res://addons/platform/ActivatorButton.gd" id="1_42njw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ph1m"]
 size = Vector2(36, 7)
