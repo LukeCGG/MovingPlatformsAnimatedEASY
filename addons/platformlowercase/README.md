@@ -20,4 +20,5 @@ There are 3 other options for activated platforms; "Move", "Hold2Move", "Hold2Op
 "Move" is run so that whenever activator is pressed, a full aniamtion forward and back will play.
 "Hold2Move" is run so that the platform will continiously play it's animation forward and back while the activator is pressed.
 "Hold2Open" is run so that while the activator is pressed, the platform will be at it's marker position, and when button is not pressed, it will be at it's original position.
-Activator is used to set the activator for the platform, you can drag in a provided "ActivatorButton" scene into your level and link it via the platform. This will make it so that the button can control the platform animation. However the activator can be used as any Node2D, as long as that node provides a custom signal of 'activated' and 'deactivated', then it will still work correctly with the platform.
+Activator is used to set what will activate the platform, you can drag in a provided "ActivatorButton" scene into your level and link it via the platform. This will make it so that the button can control the platform animation.
+However the activator can be used as any Node2D, as long as that node provides a custom signal of 'activated' and 'deactivated', then it will still work correctly with the platform.
