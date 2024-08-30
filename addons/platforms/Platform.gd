@@ -17,7 +17,6 @@ var willLoop = false
 
 #Unique name for animation to not interfear with duplicates
 @onready var nameMe = str($"../..".name) + str(randi_range(10,99))
-var nameMeOpen = str(nameMe) + "Open"
 
 #Defaults for new Animation
 var node_path = NodePath('Platform:position')
@@ -55,7 +54,7 @@ func _ready():
 			#Set Animation Speed
 			speed_scale = speed
 			#Actually make the Animation
-			anim.add_animation(nameMeOpen, animation)
+			anim.add_animation(nameMe, animation)
 		else:
 			#Something went wrong, (Hopefully this never happens!)
 			print("Track not found.")
@@ -102,7 +101,7 @@ func _ready():
 func _activated():
 	#print("SIGNAL ACTIVE")
 	if type == "Hold2Open":
-		play('Platforms/' + str(nameMeOpen))
+		play('Platforms/' + str(nameMe))
 	else:
 		if willLoop == true and is_playing():
 			pass
@@ -113,7 +112,7 @@ func _activated():
 func _deactivated():
 	#print("SIGNAL DEACTIVE")
 	if type == "Hold2Open":
-		play_backwards('Platforms/' + str(nameMeOpen))
+		play_backwards('Platforms/' + str(nameMe))
 	else:
 		if willLoop == true:
 			pause()
