@@ -1,0 +1,317 @@
+[gd_scene load_steps=11 format=3 uid="uid://bxjomegpmfebh"]
+
+[ext_resource type="PackedScene" uid="uid://d4mdrsd644m4f" path="res://Player.tscn" id="1_vdyh4"]
+[ext_resource type="PackedScene" uid="uid://8kf0xovialp1" path="res://addons/platforms/ActivatorButton.tscn" id="2_jvo3x"]
+[ext_resource type="PackedScene" uid="uid://kjen34bt1yum" path="res://addons/platforms/MovingPlatform.tscn" id="3_36h4w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58imm"]
+size = Vector2(224, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r1jke"]
+resource_local_to_scene = true
+size = Vector2(80, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x61yj"]
+resource_local_to_scene = true
+size = Vector2(80, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kd7nv"]
+resource_local_to_scene = true
+size = Vector2(80, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xtmpx"]
+resource_local_to_scene = true
+size = Vector2(80, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5yms"]
+resource_local_to_scene = true
+size = Vector2(80, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8km5"]
+resource_local_to_scene = true
+size = Vector2(48, 64)
+
+[node name="Test" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_vdyh4")]
+position = Vector2(592, 96)
+
+[node name="Label" type="Label" parent="Player"]
+offset_left = -20.0
+offset_top = -66.0
+offset_right = 20.0
+offset_bottom = -17.0
+theme_override_constants/line_spacing = -6
+text = "W
+A S D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TestFloor" type="StaticBody2D" parent="."]
+position = Vector2(512, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestFloor"]
+shape = SubResource("RectangleShape2D_58imm")
+
+[node name="ColorRect" type="ColorRect" parent="TestFloor"]
+offset_left = -112.0
+offset_top = -8.0
+offset_right = 112.0
+offset_bottom = 8.0
+
+[node name="ActivatorButton" parent="." instance=ExtResource("2_jvo3x")]
+position = Vector2(512, 120)
+
+[node name="ActivatorButton2" parent="." node_paths=PackedStringArray("mimicButton") instance=ExtResource("2_jvo3x")]
+position = Vector2(432, 120)
+mimicButton = NodePath("../ActivatorButton")
+
+[node name="MovingPlatform" parent="." instance=ExtResource("3_36h4w")]
+position = Vector2(48, 56)
+
+[node name="CollisionShape2D" parent="MovingPlatform/Platform" index="1"]
+shape = SubResource("RectangleShape2D_r1jke")
+
+[node name="Label" type="Label" parent="MovingPlatform/Platform" index="3"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -56.0
+offset_right = 42.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Diagonal
+Movement"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveLocation" parent="MovingPlatform" index="1"]
+position = Vector2(272, 72)
+
+[node name="MovingPlatform2" parent="." instance=ExtResource("3_36h4w")]
+position = Vector2(256, 192)
+
+[node name="CollisionShape2D" parent="MovingPlatform2/Platform" index="1"]
+shape = SubResource("RectangleShape2D_x61yj")
+
+[node name="Label" type="Label" parent="MovingPlatform2/Platform" index="3"]
+offset_left = -21.0
+offset_top = -32.0
+offset_right = 19.0
+offset_bottom = -9.0
+text = "Auto"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveLocation" parent="MovingPlatform2" index="1"]
+position = Vector2(448, 0)
+
+[node name="MovingPlatform3" parent="." instance=ExtResource("3_36h4w")]
+position = Vector2(256, 256)
+
+[node name="CollisionShape2D" parent="MovingPlatform3/Platform" index="1"]
+shape = SubResource("RectangleShape2D_kd7nv")
+
+[node name="AnimationPlayer" parent="MovingPlatform3/Platform" index="2" node_paths=PackedStringArray("activator")]
+type = "Move"
+activator = NodePath("../../../ActivatorButton")
+
+[node name="Label" type="Label" parent="MovingPlatform3/Platform" index="3"]
+offset_left = -21.0
+offset_top = -32.0
+offset_right = 22.0
+offset_bottom = -9.0
+text = "Move"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveLocation" parent="MovingPlatform3" index="1"]
+position = Vector2(448, 0)
+
+[node name="MovingPlatform4" parent="." instance=ExtResource("3_36h4w")]
+position = Vector2(256, 320)
+
+[node name="CollisionShape2D" parent="MovingPlatform4/Platform" index="1"]
+shape = SubResource("RectangleShape2D_xtmpx")
+
+[node name="AnimationPlayer" parent="MovingPlatform4/Platform" index="2" node_paths=PackedStringArray("activator")]
+type = "Hold2Move"
+activator = NodePath("../../../ActivatorButton")
+
+[node name="Label" type="Label" parent="MovingPlatform4/Platform" index="3"]
+offset_left = -44.0
+offset_top = -32.0
+offset_right = 44.0
+offset_bottom = -9.0
+text = "Hold2Move"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveLocation" parent="MovingPlatform4" index="1"]
+position = Vector2(448, 0)
+
+[node name="MovingPlatform5" parent="." instance=ExtResource("3_36h4w")]
+position = Vector2(256, 384)
+
+[node name="CollisionShape2D" parent="MovingPlatform5/Platform" index="1"]
+shape = SubResource("RectangleShape2D_s5yms")
+
+[node name="AnimationPlayer" parent="MovingPlatform5/Platform" index="2" node_paths=PackedStringArray("activator")]
+type = "Hold2Open"
+activator = NodePath("../../../ActivatorButton")
+
+[node name="Label" type="Label" parent="MovingPlatform5/Platform" index="3"]
+offset_left = -44.0
+offset_top = -32.0
+offset_right = 44.0
+offset_bottom = -9.0
+text = "Hold2Open"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveLocation" parent="MovingPlatform5" index="1"]
+position = Vector2(448, 0)
+
+[node name="MovingPlatform7" parent="." instance=ExtResource("3_36h4w")]
+position = Vector2(256, 448)
+
+[node name="CollisionShape2D" parent="MovingPlatform7/Platform" index="1"]
+shape = SubResource("RectangleShape2D_kd7nv")
+
+[node name="AnimationPlayer" parent="MovingPlatform7/Platform" index="2" node_paths=PackedStringArray("activator")]
+type = "Move"
+activator = NodePath("../../../ActivatorButton2")
+
+[node name="Label" type="Label" parent="MovingPlatform7/Platform" index="3"]
+offset_left = -21.0
+offset_top = -32.0
+offset_right = 22.0
+offset_bottom = -9.0
+text = "Move"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveLocation" parent="MovingPlatform7" index="1"]
+position = Vector2(448, 0)
+
+[node name="MovingPlatform8" parent="." instance=ExtResource("3_36h4w")]
+position = Vector2(256, 512)
+
+[node name="CollisionShape2D" parent="MovingPlatform8/Platform" index="1"]
+shape = SubResource("RectangleShape2D_xtmpx")
+
+[node name="AnimationPlayer" parent="MovingPlatform8/Platform" index="2" node_paths=PackedStringArray("activator")]
+type = "Hold2Move"
+activator = NodePath("../../../ActivatorButton2")
+
+[node name="Label" type="Label" parent="MovingPlatform8/Platform" index="3"]
+offset_left = -44.0
+offset_top = -32.0
+offset_right = 44.0
+offset_bottom = -9.0
+text = "Hold2Move"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveLocation" parent="MovingPlatform8" index="1"]
+position = Vector2(448, 0)
+
+[node name="MovingPlatform9" parent="." instance=ExtResource("3_36h4w")]
+position = Vector2(256, 576)
+
+[node name="CollisionShape2D" parent="MovingPlatform9/Platform" index="1"]
+shape = SubResource("RectangleShape2D_s5yms")
+
+[node name="AnimationPlayer" parent="MovingPlatform9/Platform" index="2" node_paths=PackedStringArray("activator")]
+type = "Hold2Open"
+activator = NodePath("../../../ActivatorButton2")
+
+[node name="Label" type="Label" parent="MovingPlatform9/Platform" index="3"]
+offset_left = -44.0
+offset_top = -32.0
+offset_right = 44.0
+offset_bottom = -9.0
+text = "Hold2Open"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveLocation" parent="MovingPlatform9" index="1"]
+position = Vector2(448, 0)
+
+[node name="MovingPlatform6" parent="." instance=ExtResource("3_36h4w")]
+position = Vector2(704, 128)
+
+[node name="ColorRect" parent="MovingPlatform6/Platform" index="0"]
+offset_left = -24.0
+offset_top = -32.0
+offset_right = 24.0
+offset_bottom = 32.0
+
+[node name="CollisionShape2D" parent="MovingPlatform6/Platform" index="1"]
+shape = SubResource("RectangleShape2D_f8km5")
+
+[node name="AnimationPlayer" parent="MovingPlatform6/Platform" index="2"]
+speed = 0.3
+stopframe = 0.2
+easing = 0.5
+
+[node name="Label" type="Label" parent="MovingPlatform6/Platform" index="3"]
+offset_left = 48.0
+offset_top = -51.0
+offset_right = 153.0
+offset_bottom = -28.0
+rotation = 1.5708
+text = "Customizable"
+
+[node name="MoveLocation" parent="MovingPlatform6" index="1"]
+position = Vector2(0, -64)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 479.0
+offset_top = 80.0
+offset_right = 546.0
+offset_bottom = 103.0
+text = "Button 1"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 160.0
+offset_top = 400.0
+offset_right = 330.0
+offset_bottom = 457.0
+rotation = -1.5708
+theme_override_font_sizes/font_size = 41
+text = "Button 1"
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 160.0
+offset_top = 592.0
+offset_right = 330.0
+offset_bottom = 649.0
+rotation = -1.5708
+theme_override_font_sizes/font_size = 41
+text = "Button 2"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 396.0
+offset_top = 58.0
+offset_right = 467.0
+offset_bottom = 107.0
+theme_override_constants/line_spacing = -7
+text = "Button 2
+(Mimic 1)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[editable path="MovingPlatform"]
+[editable path="MovingPlatform2"]
+[editable path="MovingPlatform3"]
+[editable path="MovingPlatform4"]
+[editable path="MovingPlatform5"]
+[editable path="MovingPlatform7"]
+[editable path="MovingPlatform8"]
+[editable path="MovingPlatform9"]
+[editable path="MovingPlatform6"]
