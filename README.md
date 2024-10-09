@@ -25,3 +25,7 @@ FOR ACTIVATED PLATFORMS
 - ALSO, the "ActivatorButton" has the option to Mimic a button, this is a super handy feature if you want two separate buttons to power the same platforms.
   - But it also allows a button to mimic a button while also running a platform itself separately (it's easier to see if you just try the Demo scene)
   - Mimic Button is not required to have a connected sister button, don't connect unless you want it to mimic another button!
+
+![alt text](https://github.com/LukeCGG/MovingPlatformsAnimatedEASY/blob/main/Inspector.png?raw=true)
+![alt text](https://github.com/LukeCGG/MovingPlatformsAnimatedEASY/blob/main/Scene.png?raw=true)
+![alt text](https://github.com/LukeCGG/MovingPlatformsAnimatedEASY/blob/main/inAction.png?raw=true)
