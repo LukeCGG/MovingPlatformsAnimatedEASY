@@ -1,17 +1,18 @@
 extends AnimationPlayer
-#Provided with Sweat & Tears by LukeCGG
+## Provided with Sweat & Tears by LukeCGG [br]
+## Easily Animate Moving Platforms in 2D with just a click and a Drag
 
 #Create a new animation
 var animation = Animation.new()
 
 #Variables to set defaults
-@export_enum("Auto", "Move", "Hold2Move", "Hold2Open") var type = "Auto"
-@export var activator : Node2D
-@export var speed : float = 0.5
-@onready var marky = $"../../MoveLocation"
-@export var marker : Marker2D
-@export var stopframe : float = 0.1
-@export var easing : float = 1
+@export_enum("Auto", "Move", "Hold2Move", "Hold2Open") var type = "Auto" ## "Auto" moves when contoniously when loaded.[br]"Move" does one full movement on activation.[br]"Hold2Move" will only move when activator is held and will stop in mid motion if released.[br]"Hold2Open" will move to marker when activator held, and move to original position when released.
+@export var activator : Node2D ## The Node providing Activate and Deactivate Signals.[br]Use "ActivatorButton" as a template if you need.
+@export var speed : float = 0.5 ## The speed at which the platform moves
+@onready var marky = $"../../MoveLocation" # Default Marker2D
+@export var marker : Marker2D ## ONLY CHANGE VALUE IF YOU WANT TO USE A DIFFERENT MARKER[br]The Marker2D which the platform will move to.
+@export var stopframe : float = 0.1 ## How long the platform will wait at each end before continuing loop
+@export var easing : float = 1 ## How smooth to ease platform between locations
 
 var willLoop = false
 

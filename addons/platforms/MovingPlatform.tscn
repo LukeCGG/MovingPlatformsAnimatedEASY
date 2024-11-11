@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://kjen34bt1yum"]
+[gd_scene load_steps=5 format=3 uid="uid://kjen34bt1yum"]
 
 [ext_resource type="Script" path="res://addons/platforms/Platform.gd" id="1_5k0de"]
+[ext_resource type="Script" path="res://addons/platforms/info.gd" id="1_aryny"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gy3bh"]
 resource_local_to_scene = true
@@ -10,6 +11,7 @@ size = Vector2(80, 16)
 
 [node name="MovingPlatform" type="Node2D"]
 position = Vector2(0, -8)
+script = ExtResource("1_aryny")
 
 [node name="Platform" type="AnimatableBody2D" parent="."]
 
