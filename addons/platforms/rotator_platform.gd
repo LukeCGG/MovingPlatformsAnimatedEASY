@@ -50,7 +50,7 @@ func _ready():
 			var new_rotation = marker.global_rotation
 			var start_rotation = $"..".global_rotation
 			
-			# Easing of rotations
+			# CHANGED: Easing of rotations uses float instead of Vector2 Values
 			animation.track_insert_key(track_idx, edge, 0, 1 * easingset) # Start
 			animation.track_insert_key(track_idx, animation.length - edge, new_rotation - start_rotation) # End
 			
@@ -73,7 +73,7 @@ func _ready():
 			animation.loop = true
 		var track_idx = animation.find_track(node_path, track_type)
 		
-		#CHANGED: New rotation and start_rotation use global rotation values instead
+		# CHANGED: New rotation and start_rotation use global rotation values instead
 		if track_idx != -1:
 			var edge = stopframe
 			var time_of_keyframe = 1
@@ -82,13 +82,13 @@ func _ready():
 			
 			print("Start Rotation is " + str(start_rotation))
 			print("New Rotation is " + str(new_rotation))
-			# Easing of rotations
+			
+			# CHANGED: Easing of rotations uses float instead of Vector2 Values
 			animation.track_insert_key(track_idx, edge, 0, 1 * easingset) # Start
 			animation.track_insert_key(track_idx, animation.length - edge, new_rotation - start_rotation) # End
 			
 			for i in animation.track_get_key_count(track_idx):
 				print("Animation track value is " + str(animation.track_get_key_value(track_idx, i)))
-			#print(animation.track_get_key_count(track_idx))
 			
 			#Set Animation Speed
 			speed_scale = speed
