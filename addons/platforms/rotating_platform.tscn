@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://pie68hryom0r"]
+
+[ext_resource type="Script" uid="uid://vig5fcvqksg8" path="res://addons/platforms/info.gd" id="1_dpfna"]
+[ext_resource type="Script" path="res://addons/platforms/rotator_platform.gd" id="2_dpfna"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dpfna"]
+resource_local_to_scene = true
+size = Vector2(80, 65)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dpfna"]
+
+[node name="RotatingPlatform" type="Node2D"]
+script = ExtResource("1_dpfna")
+
+[node name="Platform" type="AnimatableBody2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Platform" groups=["PObject"]]
+clip_children = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -31.0
+offset_right = 40.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_dpfna")
+one_way_collision = true
+one_way_collision_margin = 2.0
+
+[node name="Rotator" type="AnimationPlayer" parent="Platform" node_paths=PackedStringArray("marker")]
+root_node = NodePath("../..")
+libraries = {
+&"Rotators": SubResource("AnimationLibrary_dpfna")
+}
+script = ExtResource("2_dpfna")
+marker = NodePath("../../RotateLocation")
+metadata/_custom_type_script = ExtResource("2_dpfna")
+
+[node name="RotateLocation" type="Marker2D" parent="."]
+rotation = 1.5708
