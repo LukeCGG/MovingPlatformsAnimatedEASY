@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://pie68hryom0r"]
 
 [ext_resource type="Script" uid="uid://vig5fcvqksg8" path="res://addons/platforms/info.gd" id="1_dpfna"]
-[ext_resource type="Script" path="res://addons/platforms/rotator_platform.gd" id="2_dpfna"]
+[ext_resource type="Script" uid="uid://hkrnlampke6c" path="res://addons/platforms/rotator_platform.gd" id="2_dpfna"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dpfna"]
 resource_local_to_scene = true
 size = Vector2(80, 65)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_dpfna"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_676ty"]
 
 [node name="RotatingPlatform" type="Node2D"]
 script = ExtResource("1_dpfna")
@@ -37,7 +37,7 @@ one_way_collision_margin = 2.0
 [node name="Rotator" type="AnimationPlayer" parent="Platform" node_paths=PackedStringArray("marker")]
 root_node = NodePath("../..")
 libraries = {
-&"Rotators": SubResource("AnimationLibrary_dpfna")
+&"Platforms": SubResource("AnimationLibrary_676ty")
 }
 script = ExtResource("2_dpfna")
 marker = NodePath("../../RotateLocation")

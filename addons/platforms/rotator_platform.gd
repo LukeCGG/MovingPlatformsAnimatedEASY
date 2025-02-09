@@ -1,7 +1,7 @@
 extends AnimationPlayer
 class_name Rotator
 ## Provided with Sweat & Tears by LukeCGG [br]
-## Easily Animate Moving Rotators in 2D with just a click and a Drag
+## Easily Animate Moving Platforms in 2D with just a click and a Drag
 
 #Create a new animation
 var animation = Animation.new()
@@ -20,10 +20,10 @@ var willLoop = false
 #Unique name for animation to not interfear with duplicates
 @onready var nameMe = str($"../..".name) + str(randi_range(10,99))
 
-#Defaults for new Animation
-var node_path = NodePath('Rotators:rotation')
+#CHANGED: Defaults for animation now use rotation value
+var node_path = NodePath('Platforms:rotation')
 var track_type = Animation.TYPE_VALUE
-var anim = get_animation_library("Rotators")
+var anim = get_animation_library("Platforms")
 
 #Once loaded, run!
 func _ready():
@@ -43,6 +43,8 @@ func _ready():
 		animation.length = 2
 		var track_idx = animation.find_track(node_path, track_type)
 		if track_idx != -1:
+			#CHANGED: New rotation and start_rotation use global rotation values instead
+			
 			var edge = stopframe
 			var time_of_keyframe = 1
 			var new_rotation = marker.global_rotation
@@ -70,20 +72,22 @@ func _ready():
 			willLoop = true
 			animation.loop = true
 		var track_idx = animation.find_track(node_path, track_type)
+		
+		#CHANGED: New rotation and start_rotation use global rotation values instead
 		if track_idx != -1:
 			var edge = stopframe
 			var time_of_keyframe = 1
 			var new_rotation = marker.global_rotation
 			var start_rotation = $"..".global_rotation
 			
-			
-			print(new_rotation)
+			print("Start Rotation is " + str(start_rotation))
+			print("New Rotation is " + str(new_rotation))
 			# Easing of rotations
 			animation.track_insert_key(track_idx, edge, 0, 1 * easingset) # Start
 			animation.track_insert_key(track_idx, animation.length - edge, new_rotation - start_rotation) # End
 			
 			for i in animation.track_get_key_count(track_idx):
-				print(animation.track_get_key_value(track_idx, i))
+				print("Animation track value is " + str(animation.track_get_key_value(track_idx, i)))
 			#print(animation.track_get_key_count(track_idx))
 			
 			#Set Animation Speed
@@ -92,9 +96,8 @@ func _ready():
 			anim.add_animation(nameMe, animation)
 			#Play the Animation (Or set activators)
 			if type == "Auto":
-				play('Rotators/' + str(nameMe))
-				print(is_playing())
-				print(current_animation == 'Rotators/' + str(nameMe))
+				play('Platforms/' + str(nameMe))
+				print("Current Animation playing is " + str(current_animation))
 			else:
 				activator.activated.connect(_activated)
 				activator.deactivated.connect(_deactivated)
@@ -106,18 +109,18 @@ func _ready():
 func _activated():
 	#print("SIGNAL ACTIVE")
 	if type == "Hold2Open":
-		play('Rotators/' + str(nameMe))
+		play('Platforms/' + str(nameMe))
 	else:
 		if willLoop == true and is_playing():
 			pass
 		else:
-			play('Rotators/' + str(nameMe))
+			play('Platforms/' + str(nameMe))
 	
 #Button released
 func _deactivated():
 	#print("SIGNAL DEACTIVE")
 	if type == "Hold2Open":
-		play_backwards('Rotators/' + str(nameMe))
+		play_backwards('Platforms/' + str(nameMe))
 	else:
 		if willLoop == true:
 			pause()
