@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://kjen34bt1yum"]
+[gd_scene load_steps=8 format=3 uid="uid://kjen34bt1yum"]
 
 [ext_resource type="Script" path="res://addons/platforms/Platform.gd" id="1_5k0de"]
 [ext_resource type="Script" path="res://addons/platforms/info.gd" id="1_aryny"]
@@ -7,7 +7,69 @@
 resource_local_to_scene = true
 size = Vector2(80, 16)
 
+[sub_resource type="Animation" id="Animation_43vfb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Platform:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Platform:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lu2py"]
+_data = {
+"RESET": SubResource("Animation_43vfb")
+}
+
+[sub_resource type="Animation" id="Animation_nnwy8"]
+resource_name = "test"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Platform:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(167.285, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Platform:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.816814]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_11ri7"]
+_data = {
+"test": SubResource("Animation_nnwy8")
+}
 
 [node name="MovingPlatform" type="Node2D"]
 position = Vector2(0, -8)
@@ -36,6 +98,7 @@ one_way_collision_margin = 2.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Platform" node_paths=PackedStringArray("marker")]
 root_node = NodePath("../..")
 libraries = {
+"": SubResource("AnimationLibrary_lu2py"),
 "Platforms": SubResource("AnimationLibrary_11ri7")
 }
 script = ExtResource("1_5k0de")

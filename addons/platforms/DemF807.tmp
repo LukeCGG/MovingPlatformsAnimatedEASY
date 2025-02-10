@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bxjomegpmfebh"]
+[gd_scene load_steps=11 format=3 uid="uid://bxjomegpmfebh"]
 
 [ext_resource type="PackedScene" uid="uid://d4mdrsd644m4f" path="res://Player.tscn" id="1_vdyh4"]
 [ext_resource type="PackedScene" uid="uid://8kf0xovialp1" path="res://addons/platforms/ActivatorButton.tscn" id="2_jvo3x"]
@@ -30,10 +30,6 @@ size = Vector2(80, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f8km5"]
 resource_local_to_scene = true
 size = Vector2(48, 64)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5egx8"]
-resource_local_to_scene = true
-size = Vector2(80, 16)
 
 [node name="Test" type="Node2D"]
 
@@ -180,7 +176,6 @@ vertical_alignment = 1
 
 [node name="MoveLocation" parent="MovingPlatform5" index="1"]
 position = Vector2(448, 0)
-rotation = -0.987172
 
 [node name="MovingPlatform7" parent="." instance=ExtResource("3_36h4w")]
 position = Vector2(256, 448)
@@ -276,35 +271,6 @@ text = "Customizable"
 [node name="MoveLocation" parent="MovingPlatform6" index="1"]
 position = Vector2(0, -64)
 
-[node name="MovingPlatform10" parent="." instance=ExtResource("3_36h4w")]
-position = Vector2(971, 146)
-
-[node name="CollisionShape2D" parent="MovingPlatform10/Platform" index="1"]
-shape = SubResource("RectangleShape2D_5egx8")
-
-[node name="AnimationPlayer" parent="MovingPlatform10/Platform" index="2"]
-root_node = NodePath("../../../MovingPlatform10")
-easing = 0.0
-
-[node name="Label" type="Label" parent="MovingPlatform10/Platform" index="3"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -52.5
-offset_top = -33.02
-offset_right = 52.5
-offset_bottom = -10.02
-grow_horizontal = 2
-grow_vertical = 0
-text = "Rotation"
-horizontal_alignment = 1
-
-[node name="MoveLocation" parent="MovingPlatform10" index="1"]
-position = Vector2(-19, 282)
-rotation = -3.05284
-
 [node name="Label" type="Label" parent="."]
 offset_left = 479.0
 offset_top = 80.0
@@ -350,4 +316,3 @@ vertical_alignment = 1
 [editable path="MovingPlatform8"]
 [editable path="MovingPlatform9"]
 [editable path="MovingPlatform6"]
-[editable path="MovingPlatform10"]

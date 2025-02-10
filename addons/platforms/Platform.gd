@@ -20,9 +20,6 @@ var willLoop = false
 @onready var nameMe = str($"../..".name) + str(randi_range(10,99))
 
 #Defaults for new Animation
-var node_path = NodePath('Platform:position')
-var node_path_rot = NodePath('Platform:rotation')
-var track_type = Animation.TYPE_VALUE
 var anim = get_animation_library("Platforms")
 
 #Once loaded, run!
@@ -30,28 +27,40 @@ func _ready():
 	#Set Marker if null
 	if not marker:
 		marker = marky
-	#Seat easing with a more user frienly layout
+	#Set easing with a more user frienly layout
 	if easing <= -1:
 		easing = 0
 		print("You can't divide by 0!!")
 	var easingset = easing + 1
 	
+	#Animation pre-setup
+	var position_track_index = animation.add_track(Animation.TYPE_VALUE)
+	animation.track_set_path(position_track_index, "Platform:position")
+	var rotation_track_index = animation.add_track(Animation.TYPE_VALUE)
+	animation.track_set_path(rotation_track_index, "Platform:rotation")
+	
 	if type == "Hold2Open":
 		#Animation setup
-		animation.add_track(track_type)
-		animation.track_set_path(0, node_path)
 		animation.length = 2
-		var track_idx = animation.find_track(node_path, track_type)
-		if track_idx != -1:
+		if position_track_index != -1 and rotation_track_index != -1:
 			var edge = stopframe
 			var time_of_keyframe = 1
 			var new_position = marker.global_position
 			var start_pos = $"..".global_position
+			var new_rotation = marker.rotation
+			var start_rot = $"..".rotation
+			
 			#print(start_pos, " ", new_position)
 			#Easing of positions
-			animation.track_insert_key(track_idx, edge, Vector2(0,0), 1 * easingset) #Start
-			animation.track_insert_key(track_idx, 1, Vector2((new_position.x - start_pos.x) / 2, (new_position.y - start_pos.y) / 2), 1 / easingset) #Center
-			animation.track_insert_key(track_idx, animation.length - edge, Vector2(new_position.x - start_pos.x, new_position.y - start_pos.y)) #End
+			animation.track_insert_key(position_track_index, edge, Vector2(0,0), 1 * easingset) #Start
+			animation.track_insert_key(position_track_index, 1, Vector2((new_position.x - start_pos.x) / 2, (new_position.y - start_pos.y) / 2), 1 / easingset) #Center
+			animation.track_insert_key(position_track_index, animation.length - edge, Vector2(new_position.x - start_pos.x, new_position.y - start_pos.y)) #End
+			
+			#print(start_rot, " ", new_rotation)
+			#Easing roations
+			animation.track_insert_key(rotation_track_index, edge, 0.0, 1 * easingset) # Start
+			animation.track_insert_key(rotation_track_index, 1, int((new_rotation - start_rot) / 2), 1 / easingset) # Center
+			animation.track_insert_key(rotation_track_index, animation.length - edge, int(new_rotation - start_rot)) # End
 			
 			#Set Animation Speed
 			speed_scale = speed
@@ -64,27 +73,35 @@ func _ready():
 		activator.deactivated.connect(_deactivated)
 	else:
 		#Animation setup
-		animation.add_track(track_type)
-		animation.track_set_path(0, node_path)
 		animation.length = 4
 		if type == "Auto" or type == "Hold2Move":
 			willLoop = true
 			animation.loop = true
-		var track_idx = animation.find_track(node_path, track_type)
-		if track_idx != -1:
+		if position_track_index != -1 and rotation_track_index != -1:
 			var edge = stopframe
 			var time_of_keyframe = 2
 			var new_position = marker.global_position
-			var new_rotation = marker.global_rotation
 			var start_pos = $"..".global_position
+			var new_rotation = marker.global_rotation
+			var start_rot = $"..".global_rotation
+			
 			#print(start_pos, " ", new_position)
 			#Easing of positions
-			animation.track_insert_key(track_idx, edge, Vector2(0,0), 1 * easingset)
-			animation.track_insert_key(track_idx, animation.length - edge, Vector2(0,0))
-			animation.track_insert_key(track_idx, 1, Vector2((new_position.x - start_pos.x) / 2, (new_position.y - start_pos.y) / 2), 1 / easingset)
-			animation.track_insert_key(track_idx, 3, Vector2((new_position.x - start_pos.x) / 2, (new_position.y - start_pos.y) / 2), 1 / easingset)
-			animation.track_insert_key(track_idx, time_of_keyframe - edge, Vector2(new_position.x - start_pos.x, new_position.y - start_pos.y))
-			animation.track_insert_key(track_idx, time_of_keyframe + edge, Vector2(new_position.x - start_pos.x, new_position.y - start_pos.y), 1 * easingset)
+			animation.track_insert_key(position_track_index, edge, Vector2(0,0), 1 * easingset)
+			animation.track_insert_key(position_track_index, animation.length - edge, Vector2(0,0))
+			animation.track_insert_key(position_track_index, 1, Vector2((new_position.x - start_pos.x) / 2, (new_position.y - start_pos.y) / 2), 1 / easingset)
+			animation.track_insert_key(position_track_index, 3, Vector2((new_position.x - start_pos.x) / 2, (new_position.y - start_pos.y) / 2), 1 / easingset)
+			animation.track_insert_key(position_track_index, time_of_keyframe - edge, Vector2(new_position.x - start_pos.x, new_position.y - start_pos.y))
+			animation.track_insert_key(position_track_index, time_of_keyframe + edge, Vector2(new_position.x - start_pos.x, new_position.y - start_pos.y), 1 * easingset)
+			
+			#print(start_rot, " ", new_rotation)
+			#Easing roations
+			animation.track_insert_key(rotation_track_index, edge, 0, 1 * easingset)
+			animation.track_insert_key(rotation_track_index, animation.length - edge, 0)
+			animation.track_insert_key(rotation_track_index, 1, (new_rotation - start_rot) / 2, 1 / easingset)
+			animation.track_insert_key(rotation_track_index, 3, (new_rotation - start_rot) / 2, 1 / easingset)
+			animation.track_insert_key(rotation_track_index, time_of_keyframe - edge, new_rotation - start_rot)
+			animation.track_insert_key(rotation_track_index, time_of_keyframe + edge, new_rotation - start_rot, 1 * easingset)
 			
 			#Set Animation Speed
 			speed_scale = speed
