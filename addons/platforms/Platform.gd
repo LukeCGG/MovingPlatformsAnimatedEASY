@@ -21,6 +21,7 @@ var willLoop = false
 
 #Defaults for new Animation
 var node_path = NodePath('Platform:position')
+var node_path_rot = NodePath('Platform:rotation')
 var track_type = Animation.TYPE_VALUE
 var anim = get_animation_library("Platforms")
 
@@ -74,6 +75,7 @@ func _ready():
 			var edge = stopframe
 			var time_of_keyframe = 2
 			var new_position = marker.global_position
+			var new_rotation = marker.global_rotation
 			var start_pos = $"..".global_position
 			#print(start_pos, " ", new_position)
 			#Easing of positions
