@@ -157,7 +157,6 @@ vertical_alignment = 1
 
 [node name="MoveLocation" parent="MovingPlatform4" index="1"]
 position = Vector2(448, 0)
-rotation = 1.18682
 
 [node name="MovingPlatform5" parent="." instance=ExtResource("3_36h4w")]
 position = Vector2(256, 384)
@@ -180,7 +179,6 @@ vertical_alignment = 1
 
 [node name="MoveLocation" parent="MovingPlatform5" index="1"]
 position = Vector2(448, 0)
-rotation = -0.987172
 
 [node name="MovingPlatform7" parent="." instance=ExtResource("3_36h4w")]
 position = Vector2(256, 448)
@@ -277,14 +275,14 @@ text = "Customizable"
 position = Vector2(0, -64)
 
 [node name="MovingPlatform10" parent="." instance=ExtResource("3_36h4w")]
-position = Vector2(971, 146)
+position = Vector2(860, 127)
 
 [node name="CollisionShape2D" parent="MovingPlatform10/Platform" index="1"]
 shape = SubResource("RectangleShape2D_5egx8")
+one_way_collision = false
 
 [node name="AnimationPlayer" parent="MovingPlatform10/Platform" index="2"]
 root_node = NodePath("../../../MovingPlatform10")
-easing = 0.0
 
 [node name="Label" type="Label" parent="MovingPlatform10/Platform" index="3"]
 anchors_preset = 7
@@ -302,8 +300,8 @@ text = "Rotation"
 horizontal_alignment = 1
 
 [node name="MoveLocation" parent="MovingPlatform10" index="1"]
-position = Vector2(-19, 282)
-rotation = -3.05284
+position = Vector2(0, 400)
+rotation = 6.28319
 
 [node name="Label" type="Label" parent="."]
 offset_left = 479.0

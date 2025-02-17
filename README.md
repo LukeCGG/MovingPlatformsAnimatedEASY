@@ -1,10 +1,12 @@
 Want to make a 2D moving platform in Godot? YouTube tutorials too hard and restricting? You've come to the right place, it's never been more simple!
 - Tested on Godot 4.3 (But probably works on older and newer versions) -
 
+Now with Rotation! - 1.9+
+
 1. Start by dropping the Platform scene into your Level
 2. Right click it in the scene tree
 3. Select Editable Children
-4. Move the Marker2D and Boom! Moving Platforms!
+4. Relocate the Marker2D and Boom! Moving Platforms!
 
 FOR JUST PLATFORMS
 - Platforms by default are set to "Auto", this mean that they will start moving when the level is loaded.

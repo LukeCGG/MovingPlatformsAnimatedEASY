@@ -1,10 +1,12 @@
 Want to make a 2D moving platform in Godot? YouTube tutorials too hard and restricting? You've come to the right place, it's never been more simple!
 - Tested on Godot 4.3 (But probably works on older and newer versions) -
 
+Now with Rotation! - 1.9+
+
 1. Start by dropping the Platform scene into your Level
 2. Right click it in the scene tree
 3. Select Editable Children
-4. Move the Marker2D and Boom! Moving Platforms!
+4. Relocate the Marker2D and Boom! Moving Platforms!
 
 FOR JUST PLATFORMS
 - Platforms by default are set to "Auto", this mean that they will start moving when the level is loaded.
@@ -25,3 +27,7 @@ FOR ACTIVATED PLATFORMS
 - ALSO, the "ActivatorButton" has the option to Mimic a button, this is a super handy feature if you want two separate buttons to power the same platforms.
   - But it also allows a button to mimic a button while also running a platform itself separately (it's easier to see if you just try the Demo scene)
   - Mimic Button is not required to have a connected sister button, don't connect unless you want it to mimic another button!
+
+![alt text](https://github.com/LukeCGG/MovingPlatformsAnimatedEASY/blob/main/Inspector.png?raw=true)
+![alt text](https://github.com/LukeCGG/MovingPlatformsAnimatedEASY/blob/main/Scene.png?raw=true)
+![alt text](https://github.com/LukeCGG/MovingPlatformsAnimatedEASY/blob/main/inAction.png?raw=true)

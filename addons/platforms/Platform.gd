@@ -9,7 +9,7 @@ var animation = Animation.new()
 @export_enum("Auto", "Move", "Hold2Move", "Hold2Open") var type = "Auto" ## "Auto" moves when contoniously when loaded.[br]"Move" does one full movement on activation.[br]"Hold2Move" will only move when activator is held and will stop in mid motion if released.[br]"Hold2Open" will move to marker when activator held, and move to original position when released.
 @export var activator : Node2D ## The Node providing Activate and Deactivate Signals.[br]Use "ActivatorButton" as a template if you need.
 @export var speed : float = 0.5 ## The speed at which the platform moves
-@onready var marky = $"../../MoveLocation" # Default Marker2D
+@onready var marky = $"../../MoveLocation" ## Default Marker2D
 @export var marker : Marker2D ## ONLY CHANGE VALUE IF YOU WANT TO USE A DIFFERENT MARKER[br]The Marker2D which the platform will move to.
 @export var stopframe : float = 0.1 ## How long the platform will wait at each end before continuing loop
 @export var easing : float = 1 ## How smooth to ease platform between locations
@@ -33,39 +33,28 @@ func _ready():
 		print("You can't divide by 0!!")
 	var easingset = easing + 1
 	
-	#Animation pre-setup
-	var position_track_index = animation.add_track(Animation.TYPE_VALUE)
-	animation.track_set_path(position_track_index, "Platform:position")
-	var rotation_track_index = animation.add_track(Animation.TYPE_VALUE)
-	animation.track_set_path(rotation_track_index, "Platform:rotation")
+	var track_index = animation.add_track(Animation.TYPE_VALUE)
+	animation.track_set_path(track_index, "Platform:transform")
 	
 	if type == "Hold2Open":
 		#Animation setup
 		animation.length = 2
-		if position_track_index != -1 and rotation_track_index != -1:
+		if true:
 			var edge = stopframe
 			var time_of_keyframe = 1
-			var new_position = marker.global_position
+			speed_scale = speed
 			var start_pos = $"..".global_position
-			var new_rotation = marker.rotation
-			var start_rot = $"..".rotation
+			var new_position = marker.global_position - start_pos
+			var start_rot = $"..".global_rotation
+			var new_rotation = marker.rotation - start_rot
 			
 			#print(start_pos, " ", new_position)
-			#Easing of positions
-			animation.track_insert_key(position_track_index, edge, Vector2(0,0), 1 * easingset) #Start
-			animation.track_insert_key(position_track_index, 1, Vector2((new_position.x - start_pos.x) / 2, (new_position.y - start_pos.y) / 2), 1 / easingset) #Center
-			animation.track_insert_key(position_track_index, animation.length - edge, Vector2(new_position.x - start_pos.x, new_position.y - start_pos.y)) #End
-			
 			#print(start_rot, " ", new_rotation)
-			#Easing roations
-			animation.track_insert_key(rotation_track_index, edge, 0.0, 1 * easingset) # Start
-			animation.track_insert_key(rotation_track_index, 1, int((new_rotation - start_rot) / 2), 1 / easingset) # Center
-			animation.track_insert_key(rotation_track_index, animation.length - edge, int(new_rotation - start_rot)) # End
+			animation.track_insert_key(track_index, edge, Transform2D(0, Vector2.ZERO), 1 * easingset) #Start
+			animation.track_insert_key(track_index, 1, Transform2D(new_rotation / 2, new_position / 2), 1 / easingset) #Center
+			animation.track_insert_key(track_index, animation.length - edge, Transform2D(new_rotation, new_position)) #End
 			
-			#Set Animation Speed
-			speed_scale = speed
-			#Actually make the Animation
-			anim.add_animation(nameMe, animation)
+			anim.add_animation(str(nameMe), animation)
 		else:
 			#Something went wrong, (Hopefully this never happens!)
 			print("Track not found.")
@@ -77,36 +66,26 @@ func _ready():
 		if type == "Auto" or type == "Hold2Move":
 			willLoop = true
 			animation.loop = true
-		if position_track_index != -1 and rotation_track_index != -1:
+		if true:
 			var edge = stopframe
 			var time_of_keyframe = 2
-			var new_position = marker.global_position
+			speed_scale = speed
 			var start_pos = $"..".global_position
-			var new_rotation = marker.global_rotation
+			var new_position = marker.global_position - start_pos
 			var start_rot = $"..".global_rotation
+			var new_rotation = marker.rotation - start_rot
 			
 			#print(start_pos, " ", new_position)
-			#Easing of positions
-			animation.track_insert_key(position_track_index, edge, Vector2(0,0), 1 * easingset)
-			animation.track_insert_key(position_track_index, animation.length - edge, Vector2(0,0))
-			animation.track_insert_key(position_track_index, 1, Vector2((new_position.x - start_pos.x) / 2, (new_position.y - start_pos.y) / 2), 1 / easingset)
-			animation.track_insert_key(position_track_index, 3, Vector2((new_position.x - start_pos.x) / 2, (new_position.y - start_pos.y) / 2), 1 / easingset)
-			animation.track_insert_key(position_track_index, time_of_keyframe - edge, Vector2(new_position.x - start_pos.x, new_position.y - start_pos.y))
-			animation.track_insert_key(position_track_index, time_of_keyframe + edge, Vector2(new_position.x - start_pos.x, new_position.y - start_pos.y), 1 * easingset)
-			
 			#print(start_rot, " ", new_rotation)
-			#Easing roations
-			animation.track_insert_key(rotation_track_index, edge, 0, 1 * easingset)
-			animation.track_insert_key(rotation_track_index, animation.length - edge, 0)
-			animation.track_insert_key(rotation_track_index, 1, (new_rotation - start_rot) / 2, 1 / easingset)
-			animation.track_insert_key(rotation_track_index, 3, (new_rotation - start_rot) / 2, 1 / easingset)
-			animation.track_insert_key(rotation_track_index, time_of_keyframe - edge, new_rotation - start_rot)
-			animation.track_insert_key(rotation_track_index, time_of_keyframe + edge, new_rotation - start_rot, 1 * easingset)
+			animation.track_insert_key(track_index, edge, Transform2D(0, Vector2.ZERO), 1 * easingset)
+			animation.track_insert_key(track_index, animation.length - edge, Transform2D(0, Vector2.ZERO))
+			animation.track_insert_key(track_index, 1, Transform2D(new_rotation / 2, new_position / 2), 1 / easingset)
+			animation.track_insert_key(track_index, 3, Transform2D(new_rotation / 2, new_position / 2), 1 / easingset)
+			animation.track_insert_key(track_index, time_of_keyframe - edge, Transform2D(new_rotation, new_position))
+			animation.track_insert_key(track_index, time_of_keyframe + edge, Transform2D(new_rotation, new_position), 1 * easingset)
 			
-			#Set Animation Speed
-			speed_scale = speed
-			#Actually make the Animation
-			anim.add_animation(nameMe, animation)
+			anim.add_animation(str(nameMe), animation)
+			
 			#Play the Animation (Or set activators)
 			if type == "Auto":
 				play('Platforms/' + str(nameMe))
