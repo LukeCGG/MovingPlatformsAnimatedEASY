@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://kjen34bt1yum"]
 
-[ext_resource type="Script" path="res://addons/platforms/Platform.gd" id="1_5k0de"]
-[ext_resource type="Script" path="res://addons/platforms/info.gd" id="1_aryny"]
+[ext_resource type="Script" uid="uid://cl3b52e2e7i5s" path="res://addons/platforms/Platform.gd" id="1_5k0de"]
+[ext_resource type="Script" uid="uid://bijskxcwdqhbd" path="res://addons/platforms/info.gd" id="1_aryny"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gy3bh"]
 resource_local_to_scene = true
