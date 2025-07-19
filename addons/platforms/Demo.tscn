@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bxjomegpmfebh"]
+[gd_scene load_steps=14 format=3 uid="uid://bxjomegpmfebh"]
 
 [ext_resource type="PackedScene" uid="uid://d4mdrsd644m4f" path="res://Player.tscn" id="1_vdyh4"]
 [ext_resource type="PackedScene" uid="uid://8kf0xovialp1" path="res://addons/platforms/ActivatorButton.tscn" id="2_jvo3x"]
 [ext_resource type="PackedScene" uid="uid://kjen34bt1yum" path="res://addons/platforms/MovingPlatform.tscn" id="3_36h4w"]
+[ext_resource type="Script" uid="uid://bwasp8heqhfl0" path="res://death_zone.gd" id="4_lusf2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_58imm"]
 size = Vector2(224, 16)
@@ -34,6 +35,9 @@ size = Vector2(48, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5egx8"]
 resource_local_to_scene = true
 size = Vector2(80, 16)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2fl6a"]
+distance = -754.0
 
 [node name="Test" type="Node2D"]
 
@@ -338,6 +342,16 @@ text = "Button 2
 (Mimic 1)"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="DeathZone" type="Area2D" parent="."]
+position = Vector2(589, -46)
+script = ExtResource("4_lusf2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
+position = Vector2(1, 1)
+shape = SubResource("WorldBoundaryShape2D_2fl6a")
+
+[connection signal="body_entered" from="DeathZone" to="DeathZone" method="_on_body_entered"]
 
 [editable path="MovingPlatform"]
 [editable path="MovingPlatform2"]

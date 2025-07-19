@@ -76,7 +76,7 @@ func _ready():
 			var new_rotation = marker.rotation - start_rot
 			
 			#print(start_pos, " ", new_position)
-			#print(start_rot, " ", new_rotation)
+			#print(start_rot, " ", new_rotation)daaaa
 			animation.track_insert_key(track_index, edge, Transform2D(0, Vector2.ZERO), 1 * easingset)
 			animation.track_insert_key(track_index, animation.length - edge, Transform2D(0, Vector2.ZERO))
 			animation.track_insert_key(track_index, 1, Transform2D(new_rotation / 2, new_position / 2), 1 / easingset)
