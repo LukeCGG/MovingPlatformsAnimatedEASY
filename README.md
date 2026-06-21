@@ -1,7 +1,7 @@
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Sixtyfour+Convergence&size=30&duration=4000&pause=1200&color=1E00F7&vCenter=true&width=520&height=42&lines=MOVING+PLATFORMS;DYNAMIC+ANIMATION;ACTIVATE+%26+AUTO;ROTATE+OR+MOVE)](https://git.io/typing-svg)
 
 Want to make a 2D moving platform in Godot? YouTube tutorials too hard and restricting? You've come to the right place, it's never been more simple!
-- Tested on Godot 4.0 through 4.5 (But probably works on older and newer versions as well) -
+- Tested on Godot 4.0 through 4.7 (But probably works on older and newer versions as well) -
 
 Now with Rotation! - 1.9+
 

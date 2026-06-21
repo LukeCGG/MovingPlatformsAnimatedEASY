@@ -1,5 +1,5 @@
 Want to make a 2D moving platform in Godot? YouTube tutorials too hard and restricting? You've come to the right place, it's never been more simple!
-- Tested on Godot 4.3 (But probably works on older and newer versions) -
+- Tested on Godot 4.0 through 4.7 (But probably works on older and newer versions) -
 
 Now with Rotation! - 1.9+
 
